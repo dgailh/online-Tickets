@@ -1,0 +1,80 @@
+<div>
+  <ng-flash-message>
+  </ng-flash-message>
+  <ul *ngFor="let user of users$ ">
+    <li>
+      {{user.first_name}} - {{user.last_name}} - {{user.email}} - {{user.birth}} - {{user.phone}}
+      <button class="btn btn-warning btn-sm"
+              *ngIf="isAdmin || loggedUser.userId==user.id" (click)=updateUser(user)>update </button>-
+      <button class="btn btn-warning btn-sm"
+              *ngIf="isAdmin || loggedUser.userId==user.id" (click)=deleteUser(user.id)>delete </button>
+      <br/>
+      <button *ngIf="isAdmin || loggedUser.userId==user.id" (click)="getUserTickets(user.id)">show tickets</button>
+    </li>
+  </ul>
+
+  <span *ngIf="isEditing">Hide</span>
+  <span *ngIf="!isEditing">Edit</span>
+</div>
+
+<div *ngIf="showTickets">
+  <ul *ngFor="let ticket of tickets$">
+    <li>
+      {{ticket.event.name}} - {{ticket.event.time}} - {{ticket.event.location}}
+      <button (click)="deleteTicket(ticket.id,ticket.user.id)">Cancel Ticket</button>
+    </li>
+  </ul>
+
+</div>
+
+<div *ngIf="isEditing">
+<hr>
+  <label>email
+    <input type="email" [(ngModel)]="currentUser.email"
+    name="email" class="form-control-lg">
+  </label>
+
+  <label>first name
+    <input type="text" [(ngModel)]="currentUser.first_name"
+           name="first name" class="form-control-lg">
+  </label>
+
+  <label>middle name
+    <input type="text" [(ngModel)]="currentUser.middle_name"
+           name="middle name" class="form-control-lg">
+  </label>
+
+  <label>last name
+    <input type="text" [(ngModel)]="currentUser.last_name"
+           name="last name" class="form-control-lg">
+  </label>
+
+  <label>password
+    <input type="password" [(ngModel)]="currentUser.password"
+           name="passowrd" class="form-control-lg">
+  </label>
+
+  <label>phone number
+    <input type="text" [(ngModel)]="currentUser.phone"
+           name="phone number" class="form-control-lg">
+  </label>
+
+  <label>birth date
+    <input type="date" [(ngModel)]="currentUser.birth"
+           name="birth date" class="form-control-lg">
+  </label>
+
+  <label>role id
+    <input type="number" [(ngModel)]="currentUser.role"
+           name="role number" class="form-control-lg">
+  </label>
+
+  <button type="submit" class="btn btn-primary"
+          (click)="onSubmit(currentUser)">Submit</button>
+
+  <h3>Results</h3>
+  <div class="result">
+    {{ currentUser | json}}
+  </div>
+<!--end here ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+</div>

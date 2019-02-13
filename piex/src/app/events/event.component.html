@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>hello user: {{loggedUser.userRole}} + {{loggedUser.userId}}</p>
+<ng-flash-message>
+</ng-flash-message>
+<ul *ngFor="let event of events$">
+  <li >
+    {{event.name }} <br/>
+    {{event.id}} <br/>
+    {{event.seats - event.taken}} left <br/>
+    {{event.time}} - {{event.location}} <br/>
+    <button (click)="advanceEvent(event)">Show details</button>
+    <button (click)="bookATicket(event.id)">Book for This Event</button>
+    <br/>
+    <button *ngIf="isAdmin || event.organizer.id==loggedUser.userId"  (click)="deleteEvent(event.id)">Remove This Event</button>
+
+  </li>
+</ul>
+
+<div *ngIf="showDetails">
+  <label> {{currentEvent.name}} - <br/>
+    {{currentEvent.seats}}- <br/>
+    {{currentEvent.taken}}- <br/>
+    {{currentEvent.time}}- <br/>
+    {{currentEvent.organizer.first_name}}- <br/>
+    {{currentEvent.location}}- <br/>
+  </label>
+</div>
+<br/>
+<br/>
+<div>
+<app-create-event></app-create-event>
+</div>
+</body>
+</html>

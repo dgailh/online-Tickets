@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ng-flash-message>
+</ng-flash-message>
+<ul *ngFor="let event of events$">
+  <li >
+    {{event.name }} <br/>
+    {{event.id}} <br/>
+    {{event.seats - event.taken}} left <br/>
+    {{event.time}} - {{event.location}} <br/>
+    <button (click)="approveEvent(event.id)">Approve</button> <br/>
+    <button (click)="disapproveEvent(event.id)">cancel approval</button>
+    <br/>
+  </li>
+</ul>
+</body>
+</html>

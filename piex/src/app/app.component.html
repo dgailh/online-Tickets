@@ -1,0 +1,60 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="row">
+<h1>hello angular</h1>
+<ul class="list-group">
+  <li *ngFor="let user of users "
+      class="list-group-item">
+    {{ user.id}} - {{ user.first_name }} -{{user.middle_name}}
+    -{{user.last_name}}-{{user.phone}}-{{user.email}}
+  </li>
+</ul>
+</div>
+
+<div class="row">
+<form novalidate [formGroup]="currentUserForm">
+  <div class="form-group">
+    <label for="f_name">first Name</label>
+    <input type="text" id="f_name" placeholder="first name ..." name="first_name" formControlName="first_name">
+  </div>
+  <div class="form-group">
+    <label for="m_name">middle Name</label>
+    <input type="text" id="m_name" placeholder="middle name ..." name="middle_name" formControlName="middle_name">
+  </div>
+  <div class="form-group">
+    <label for="l_name">last Name</label>
+    <input type="text" id="l_name" placeholder="last name ..." name="last_name" formControlName="last_name">
+  </div>
+  <div class="form-group">
+    <label for="passw">password</label>
+    <input type="password" id="passw"  name="password" formControlName="password">
+  </div>
+  <div class="form-group">
+    <label for="mail">Email</label>
+    <input type="email" id="mail" placeholder="Email@something.something ..." name="email" formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="phon">Phone</label>
+    <input type="text" id="phon" placeholder="phone number 10 numbers starting with 05" name="phone" formControlName="phone">
+  </div>
+  <div class="form-group">
+    <label for="roleNumber">role</label>
+    <input type="number" id="roleNumber" placeholder="role number 1 ... 2 " name="role" formControlName="role">
+  </div>
+  <button type="submit" class="btn btn-primary"
+          (click)="addUser()"
+          [disabled]="!currentUserForm.valid" >
+    Add User
+  </button>
+</form>
+</div>
+<hr>
+
+<h3>Results</h3>
+<div class="result">
+  {{ currentUserForm.value | json}}
+</div>
+
+
+
+
+

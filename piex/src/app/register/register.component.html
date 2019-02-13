@@ -1,0 +1,69 @@
+<div style="background-color: blue">
+  <H1 style="color: white">Register</H1>
+  <div class="rounded" style="background-color: white; margin: 20px; padding: 20px">
+    <form novalidate [formGroup]="myReactiveForm">
+      <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input type="email" class="form-control" id="inputEmail"
+               placeholder="Enter email" name="email"
+               formControlName="email">
+      </div>
+
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control"
+               formControlName="password"
+               id="inputPassword" placeholder="Password" name="password">
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">Enter First Name</label>
+        <input type="text" class="form-control"
+               formControlName="first_name"
+               id="firstName" placeholder="Enter First Name" name="firstName">
+      </div>
+
+      <div class="form-group">
+        <label for="midName">Enter Mid Name</label>
+        <input type="text" class="form-control"
+               formControlName="middle_name"
+               id="midName" placeholder="Enter Mid Name" name="midName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Enter Last Name</label>
+        <input type="text" class="form-control"
+               formControlName="last_name"
+               id="lastName" placeholder="Enter Last Name" name="lastName">
+      </div>
+      <div class="form-group">
+        <label for="userPhone">Enter Your phone number</label>
+        <input type="text" class="form-control"
+               formControlName="phone"
+               id="userPhone" placeholder="Enter your phone number" name="userPhone">
+      </div>
+      <div class="form-group">
+        <label for="userdob">Enter DateOfBirth</label>
+        <input type="date" class="form-control"
+               formControlName="birth"
+               id="userdob" placeholder="Enter your phone number" name="userdob">
+      </div>
+      <div class="form-group">
+        <label for="roleInput">Enter Role</label>
+        <select class="form-control" id="roleInput"formControlName="role" name="role">
+          <option value="" disabled>Enter your role here..</option>
+          <option value=user>User</option>
+          <option value=organizer>Organizer</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary"
+              (click)="onSubmit()"
+              [disabled]="!myReactiveForm.valid">Submit</button>
+    </form>
+
+    <h3>Results</h3>
+    <div class="result">
+      {{ myReactiveForm.value | json}}
+    </div>
+  </div>
+</div>
