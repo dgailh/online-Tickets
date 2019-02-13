@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
 import { NgFlashMessageService } from 'ng-flash-messages';
+import {Router} from "@angular/router";
 
 
 @Component(
@@ -14,7 +15,9 @@ import { NgFlashMessageService } from 'ng-flash-messages';
 export class EventCreate implements OnInit{
   currentUser: UserLogin;
   myReactiveForm: FormGroup;
-  constructor(private NgFlashMessageService: NgFlashMessageService,private formBuilder: FormBuilder, private eventService: eventService) { }
+  constructor(private Router: Router,
+    private NgFlashMessageService: NgFlashMessageService,
+    private formBuilder: FormBuilder, private eventService: eventService) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -55,7 +58,10 @@ export class EventCreate implements OnInit{
         });
       },
       err => console.log(err),
-      () => console.log('creating event...')
+      () => {console.log('creating event...')
+    this.Router.navigate(['/events'])}
+
+
     )
     };
     //console.log('Form submitted: ', this.myReactiveForm.value);

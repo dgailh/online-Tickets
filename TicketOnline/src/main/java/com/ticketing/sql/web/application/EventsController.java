@@ -2,6 +2,7 @@ package com.ticketing.sql.web.application;
 
 import com.ticketing.sql.business.service.EventsService;
 import com.ticketing.sql.data.dto.EventsDTO;
+import com.ticketing.sql.data.dto.ServerResponse;
 import com.ticketing.sql.data.entity.Events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -61,18 +62,14 @@ public class EventsController {
     //todo make it so only admins can approve events!
     @RequestMapping(value = "/approveEvent/{id}")
     public ResponseEntity approveEvent(@PathVariable @Valid long id) {
-        if (eventsService.approve(id))
-            return ResponseEntity.ok("Event approved");
-        return ResponseEntity.badRequest().body("something went wrong in event approval.");
+        return ResponseEntity.ok(eventsService.approve(id));
     }
 
-    //admins can disapprove admins
+    //admins can disapprove events
     //todo make it so only admins can disapprove events!
     @RequestMapping(value = "/disapproveEvent/{id}")
     public ResponseEntity disapproveEvent(@PathVariable long id) {
-        if (eventsService.disapprove(id))
-            return ResponseEntity.ok("Event no longer approved.");
-        return ResponseEntity.badRequest().body("sometihng went wrong in event disapproving.");
+        return ResponseEntity.ok(eventsService.disapprove(id));
     }
 
     // for searching by City

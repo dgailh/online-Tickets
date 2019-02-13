@@ -20,11 +20,13 @@ public class EventsService {
     @Autowired
     private final EventsRepository eventsRepository;
     private final UsersRepository usersRepository;
+    private ServerResponse serverResponse;
 
 
     public EventsService(EventsRepository eventsRepository, UsersRepository usersRepository) {
         this.eventsRepository = eventsRepository;
         this.usersRepository = usersRepository;
+        serverResponse = new ServerResponse();
     }
 
     public List<Events> getEvent() {
@@ -36,7 +38,6 @@ public class EventsService {
     }
 
     public ServerResponse addEvent(EventsDTO object) {
-        ServerResponse serverResponse = new ServerResponse();
         Events newEvent = modelMapper.map(object,Events.class);
         newEvent.setOrganizer(usersRepository.findById(object.getOrganizer()).get());
         if (newEvent.getOrganizer() == null){
@@ -56,18 +57,7 @@ public class EventsService {
         return null;
     }
 
-    public boolean approve(long id) {
-        if (eventsRepository.findById(id).isPresent()){
-            Events event = this.eventsRepository.findById(id).get();
-            event.setApproved(true);
-            this.eventsRepository.save(event);
-            return true;
-        }
-        return false;
-    }
-
     public ServerResponse softDelete(long id) {
-        ServerResponse serverResponse = new ServerResponse();
         if (eventsRepository.findById(id).isPresent()) {
 
             Events event = this.eventsRepository.findById(id).get();
@@ -82,16 +72,33 @@ public class EventsService {
         return serverResponse;
     }
 
-    public boolean disapprove(long id) {
+    public ServerResponse approve(long id) {
+        if (eventsRepository.findById(id).isPresent()){
+            Events event = this.eventsRepository.findById(id).get();
+            event.setApproved(true);
+            this.eventsRepository.save(event);
+            serverResponse.setText("The "+ event.getName()+" have been Approved");
+            serverResponse.setResponseIndicator(2);
+            return serverResponse;
+        }
+        serverResponse.setText("something went wrong with Approving the event");
+        serverResponse.setResponseIndicator(0);
+        return serverResponse;
+    }
+
+    public ServerResponse disapprove(long id) {
 
         if (eventsRepository.findById(id).isPresent()) {
-
             Events event = this.eventsRepository.findById(id).get();
             event.setApproved(false);
             this.eventsRepository.save(event);
-            return true;
+            serverResponse.setText("The "+ event.getName()+" have been Disapproved");
+            serverResponse.setResponseIndicator(2);
+            return serverResponse;
         }
-        return false;
+        serverResponse.setText("something went wrong with disapproving the event");
+        serverResponse.setResponseIndicator(0);
+        return serverResponse;
     }
 
     public List<Events> findByCity(String city) {

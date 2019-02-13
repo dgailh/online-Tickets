@@ -6,9 +6,6 @@ import {UserComponent} from "../user/user.component";
 import {LoginComponent} from "../login/login.component";
 import {EventComponent} from "../events/event.component";
 import {AdminEvent} from "../events/admin.event";
-//import {AppComponent} from './app.component';
-//import {UserComponent} from './entity/user.component';
-//import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {path: '', component: AppComponent},
