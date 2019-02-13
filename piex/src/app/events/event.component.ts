@@ -4,6 +4,8 @@ import {eventService} from "./eventService";
 import {Event} from "./Event";
 import { NgFlashMessageService } from 'ng-flash-messages';
 import {UserLogin} from "../user/user.login";
+import {Response} from "../service/server.response";
+import {MessageService} from "../service/MessageService";
 
 
 @Component(
@@ -20,9 +22,11 @@ export class EventComponent implements OnInit{
   isOrganizer;
   currentEvent: Event;
   loggedUser: UserLogin;
+  response: Response;
   prevId : number;
 
-  constructor(private NgFlashMessageService: NgFlashMessageService ,private route: ActivatedRoute, private eventService: eventService){
+  constructor(private messageService: MessageService,
+    private NgFlashMessageService: NgFlashMessageService ,private route: ActivatedRoute, private eventService: eventService){
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
     if(this.loggedUser.userRole =="admin")
       this.isAdmin = true;
@@ -31,9 +35,8 @@ export class EventComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
-
     this.getEvents();
+    if (this.messageService.getMessage()) this.showMSG();
   }
   getEvents(){
     this.eventService.getEvents().subscribe(
@@ -132,5 +135,35 @@ export class EventComponent implements OnInit{
     )
   }
 
+  showMSG(){
+    this.messageService.getMessage().subscribe(params => {
+        let message;
+        switch (params.responseIndicator) {
+          case 0:
+            message = "danger";
+            break;
+          case 1:
+            message = "warning";
+            break;
+          case 2:
+            message = "success";
+            break;
 
+
+        }
+        //alert(this.response.text);
+        this.NgFlashMessageService.showFlashMessage({
+          // Array of messages each will be displayed in new line
+          messages: [params.text],
+          // Whether the flash can be dismissed by the user defaults to false
+          dismissible: true,
+          // Time after which the flash disappears defaults to 2000ms
+          timeout: 7000,
+          // Type of flash message, it defaults to info and success, warning, danger types can also be used
+          type: message
+        });
+      },
+      err => console.log(err),
+      ()=>console.log('printing a msg'));
+  }
 }

@@ -6,7 +6,6 @@ import {map, catchError} from "rxjs/operators";
 import {of} from "rxjs";
 import {Event} from "./Event";
 import {Response} from "../service/server.response";
-import {User} from "../user/User";
 
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 const API_ARGS = {headers: headers};

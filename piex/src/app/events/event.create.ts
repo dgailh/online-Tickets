@@ -3,8 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
 import { NgFlashMessageService } from 'ng-flash-messages';
-import {Router} from "@angular/router";
-
+import {NavigationExtras, Router} from "@angular/router";
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { MessageService} from "../service/MessageService";
 
 @Component(
   {
@@ -15,7 +16,8 @@ import {Router} from "@angular/router";
 export class EventCreate implements OnInit{
   currentUser: UserLogin;
   myReactiveForm: FormGroup;
-  constructor(private Router: Router,
+  constructor(private messageService: MessageService,
+    private Router: Router,private flashMessagesService: FlashMessagesService,
     private NgFlashMessageService: NgFlashMessageService,
     private formBuilder: FormBuilder, private eventService: eventService) { }
 
@@ -34,38 +36,16 @@ export class EventCreate implements OnInit{
     let message;
     this.myReactiveForm.patchValue({'organizer':''+this.currentUser.userId})
     this.eventService.addEvent(this.myReactiveForm.value).subscribe(action=>{
-        switch (action.responseIndicator) {
-          case 0:
-            message = "danger";
-            break;
-          case 1:
-            message = "warning";
-            break;
-          case 2:
-            message = "success";
-            break;
 
-        }
-        this.NgFlashMessageService.showFlashMessage({
-          // Array of messages each will be displayed in new line
-          messages: [action.text],
-          // Whether the flash can be dismissed by the user defaults to false
-          dismissible: true,
-          // Time after which the flash disappears defaults to 2000ms
-          timeout: 2000,
-          // Type of flash message, it defaults to info and success, warning, danger types can also be used
-          type: message
-        });
+        this.messageService.sendMessage(action);
+        this.Router.navigate(["/events"]);
       },
       err => console.log(err),
-      () => {console.log('creating event...')
-    this.Router.navigate(['/events'])}
-
-
+      () => {
+        console.log('creating event...')
+      },
     )
     };
-    //console.log('Form submitted: ', this.myReactiveForm.value);
 
 }
-
 

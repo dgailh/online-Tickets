@@ -6,6 +6,7 @@ import {UserComponent} from "../user/user.component";
 import {LoginComponent} from "../login/login.component";
 import {EventComponent} from "../events/event.component";
 import {AdminEvent} from "../events/admin.event";
+import {EventCreate} from "../events/event.create";
 
 const routes: Routes = [
   {path: '', component: AppComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'events', component: EventComponent},
   {path: 'admin/events', component:AdminEvent},
+  {path: 'events/create', component:EventCreate},
   // {path: 'detail/:id', component: CityDetailComponent}
 ];
 
