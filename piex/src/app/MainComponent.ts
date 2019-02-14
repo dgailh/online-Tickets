@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserLogin} from "./user/user.login";
+import {AuthenticationService} from "./service/authentication.service";
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,8 @@ import {UserLogin} from "./user/user.login";
     <a routerLink="/register" class="btn btn-primary">Register</a>-
       <a routerLink="/login" class="btn btn-primary">login</a>-
       <a routerLink="/events" class="btn btn-primary">events</a>-
-      <a *ngIf="isAdmin()" routerLink="/admin/events" class="btn btn-primary">Admin</a>
+      <a *ngIf="isAdmin()" routerLink="/admin/events" class="btn btn-primary">Admin</a>-
+      <button (click)="logout()">Sign Out</button>
     <hr>
 		<router-outlet></router-outlet>
     <hr >
@@ -22,7 +24,7 @@ import {UserLogin} from "./user/user.login";
 export class MainComponent implements OnInit {
   loggedUser: UserLogin;
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
 
   }
@@ -30,9 +32,14 @@ export class MainComponent implements OnInit {
 
   }
   isAdmin(){
+    if (this.loggedUser)
     if (this.loggedUser.userRole =='admin')
       return true;
     else
       return false;
+  }
+
+  logout(){
+    this.authenticationService.logout();
   }
 }

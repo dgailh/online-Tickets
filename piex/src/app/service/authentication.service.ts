@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHandler, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {User} from "../user/User";
+import {Router} from "@angular/router";
 
 
 
@@ -10,7 +11,7 @@ import {User} from "../user/User";
 export class AuthenticationService {
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private Router: Router,) {
   }
 
   login(email: string, password: string) {
@@ -22,6 +23,7 @@ export class AuthenticationService {
         if (user) {
           user.authdata = btoa(`${email}:${password}`);
           localStorage.setItem('currentUser', JSON.stringify(user));
+          location.reload();
         }
         return user;
       }));
@@ -30,5 +32,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    this.Router.navigate(['/login']);
+
   }
 }

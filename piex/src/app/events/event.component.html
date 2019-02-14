@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<p>hello user: {{loggedUser.userRole}} + {{loggedUser.userId}}</p>
+<p *ngIf="!isGuest">hello user: {{loggedUser.userRole}} + {{loggedUser.userId}}</p>
+<p *ngIf="isGuest" style="text-decoration: underline; color: crimson" >To book for event you need to sign in</p>
 <ng-flash-message>
 </ng-flash-message>
 <ul *ngFor="let event of events$">
@@ -17,8 +18,9 @@
     <button (click)="advanceEvent(event)">Show details</button>
     <button (click)="bookATicket(event.id)">Book for This Event</button>
     <br/>
+    <div *ngIf="!isGuest">
     <button *ngIf="isAdmin || event.organizer.id==loggedUser.userId"  (click)="deleteEvent(event.id)">Remove This Event</button>
-
+    </div>
   </li>
 </ul>
 

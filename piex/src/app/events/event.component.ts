@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {eventService} from "./eventService";
 import {Event} from "./Event";
 import { NgFlashMessageService } from 'ng-flash-messages';
@@ -22,16 +22,20 @@ export class EventComponent implements OnInit{
   isOrganizer;
   currentEvent: Event;
   loggedUser: UserLogin;
-  response: Response;
+  isGuest: boolean;
   prevId : number;
 
-  constructor(private messageService: MessageService,
+  constructor(private Router: Router,private messageService: MessageService,
     private NgFlashMessageService: NgFlashMessageService ,private route: ActivatedRoute, private eventService: eventService){
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
-    if(this.loggedUser.userRole =="admin")
-      this.isAdmin = true;
-    if (this.loggedUser.userRole== "organizer")
-      this.isOrganizer = true;
+    if (this.loggedUser) {//
+      if (this.loggedUser.userRole == "admin")
+        this.isAdmin = true;
+      if (this.loggedUser.userRole == "organizer")
+        this.isOrganizer = true;
+    }
+    else
+      this.isGuest = true;
   }
 
   ngOnInit(): void {
@@ -70,6 +74,10 @@ export class EventComponent implements OnInit{
 
   bookATicket(eventID :number ){
      let message;
+
+     if (this.isGuest){
+       this.Router.navigate(['/login']);
+     }
 
     this.eventService.bookATicket(this.loggedUser.userId,eventID).subscribe(
       action => {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 // import {Observable} from 'rxjs';
 import {User} from './User';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from './UserService';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {Ticket} from "./tickets/Ticket";
 import {NgFlashMessageService} from "ng-flash-messages";
 import {UserLogin} from "./user.login";
@@ -21,16 +21,21 @@ export class UserComponent implements OnInit {
   loggedUser: UserLogin;
   isAdmin;
 
-  constructor(private NgFlashMessageService: NgFlashMessageService ,
+  constructor(private Router: Router,
+              private NgFlashMessageService: NgFlashMessageService ,
               private route: ActivatedRoute,
               private userService: UserService, private formBuilder: FormBuilder) {
 
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.loggedUser){
     if(this.loggedUser.userRole =="admin")
-      this.isAdmin = true;
+      this.isAdmin = true;}
+    else
+      this.Router.navigate(['/home']);
   }
 
   ngOnInit() {
+
     this.getUsers();
 
   }

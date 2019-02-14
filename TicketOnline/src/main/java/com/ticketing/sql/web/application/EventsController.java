@@ -38,7 +38,6 @@ public class EventsController {
     // todo need more logic to make it only organizes can make it
     @PostMapping(value = "/createEvent")
     public ResponseEntity createEvent(@RequestBody @Valid EventsDTO events) {
-
         return ResponseEntity.ok(this.eventsService.addEvent(events));
     }
 

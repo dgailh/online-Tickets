@@ -1,10 +1,11 @@
-<div style="background-color: blue">
+<div style="background-color: whitesmoke">
 
   <ng-flash-message>
   </ng-flash-message>
   <flash-messages></flash-messages>
 
-  <H1 style="color: white">Register Event</H1>
+  <h2 *ngIf="showMSG" style="color: yellowgreen"> {{messages}}</h2>
+  <H1 style="color: yellowgreen">Register Event</H1>
 
   <div class="rounded" style="background-color: white; margin: 20px; padding: 20px">
     <form novalidate [formGroup]="myReactiveForm">
