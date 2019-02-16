@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {eventService} from "./eventService";
 import {Event} from "./Event";
 import { NgFlashMessageService } from 'ng-flash-messages';
 import {UserLogin} from "../user/user.login";
-import {Response} from "../service/server.response";
 import {MessageService} from "../service/MessageService";
 
 
@@ -15,7 +14,7 @@ import {MessageService} from "../service/MessageService";
   }
 )
 
-export class EventComponent implements OnInit{
+export class EventComponent implements OnInit,OnDestroy {
   events$ : Event[];
   showDetails;
   isAdmin;
@@ -174,4 +173,7 @@ export class EventComponent implements OnInit{
       err => console.log(err),
       ()=>console.log('printing a msg'));
   }
-}
+
+ngOnDestroy(): void {
+
+}}

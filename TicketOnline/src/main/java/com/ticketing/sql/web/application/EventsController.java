@@ -2,7 +2,6 @@ package com.ticketing.sql.web.application;
 
 import com.ticketing.sql.business.service.EventsService;
 import com.ticketing.sql.data.dto.EventsDTO;
-import com.ticketing.sql.data.dto.ServerResponse;
 import com.ticketing.sql.data.entity.Events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

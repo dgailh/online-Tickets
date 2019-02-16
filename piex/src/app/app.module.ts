@@ -18,6 +18,7 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
 import {EventCreate} from "./events/event.create";
 import {AdminEvent} from "./events/admin.event";
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import {SingleEvent} from "./events/single.event";
 
 
 
@@ -32,6 +33,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     EventComponent,
     EventCreate,
     AdminEvent,
+    SingleEvent,
 
   ],
   imports: [

@@ -13,7 +13,7 @@ import {AuthenticationService} from "./service/authentication.service";
       <a routerLink="/login" class="btn btn-primary">login</a>-
       <a routerLink="/events" class="btn btn-primary">events</a>-
       <a *ngIf="isAdmin()" routerLink="/admin/events" class="btn btn-primary">Admin</a>-
-      <button (click)="logout()">Sign Out</button>
+      <button  (click)="logout()">Sign Out</button>
     <hr>
 		<router-outlet></router-outlet>
     <hr >

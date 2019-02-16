@@ -12,7 +12,6 @@
 <ul *ngFor="let event of events$">
   <li >
     {{event.name }} <br/>
-    {{event.id}} <br/>
     {{event.seats - event.taken}} left <br/>
     {{event.time}} - {{event.location}} <br/>
     <button (click)="advanceEvent(event)">Show details</button>
@@ -36,7 +35,7 @@
 <br/>
 <br/>
 <div>
-  <a routerLink="/events/create" class="btn btn-primary">Create new Event</a>
+  <a *ngIf="isAdmin || isOrganizer" routerLink="/events/create" class="btn btn-primary">Create new Event</a>
 </div>
 </body>
 </html>

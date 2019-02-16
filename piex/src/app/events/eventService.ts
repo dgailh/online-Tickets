@@ -57,4 +57,8 @@ export class eventService{
   disapproveEvent(event_id:number): Observable<Response>{
     return this.http.get<Response>('api/event/disapproveEvent/'+event_id)
   }
+
+  getSingleEvent(event_id:number): Observable<Event>{
+    return this.http.get<Event>('api/event/events/'+event_id)
+  }
 }
