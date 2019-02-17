@@ -2,9 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {eventService} from "./eventService";
 import {Event} from "./Event";
-import { NgFlashMessageService } from 'ng-flash-messages';
 import {UserLogin} from "../user/user.login";
-import {MessageService} from "../service/MessageService";
+import {AlertService} from "../service/alert.service";
 
 
 @Component(
@@ -24,8 +23,10 @@ export class EventComponent implements OnInit,OnDestroy {
   isGuest: boolean;
   prevId : number;
 
-  constructor(private Router: Router,private messageService: MessageService,
-    private NgFlashMessageService: NgFlashMessageService ,private route: ActivatedRoute, private eventService: eventService){
+  constructor(private Router: Router,
+              private flashMSG:AlertService ,private route: ActivatedRoute,
+              private eventService: eventService){
+
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.loggedUser) {//
       if (this.loggedUser.userRole == "admin")
@@ -72,36 +73,13 @@ export class EventComponent implements OnInit,OnDestroy {
   }
 
   bookATicket(eventID :number ){
-     let message;
-
      if (this.isGuest){
        this.Router.navigate(['/login']);
      }
 
     this.eventService.bookATicket(this.loggedUser.userId,eventID).subscribe(
       action => {
-        switch (action.responseIndicator) {
-          case 0:
-            message = "danger";
-            break;
-          case 1:
-            message = "warning";
-            break;
-          case 2:
-            message = "success";
-            break;
-
-        }
-        this.NgFlashMessageService.showFlashMessage({
-          // Array of messages each will be displayed in new line
-          messages: [action.text],
-          // Whether the flash can be dismissed by the user defaults to false
-          dismissible: true,
-          // Time after which the flash disappears defaults to 2000ms
-          timeout: 2000,
-          // Type of flash message, it defaults to info and success, warning, danger types can also be used
-          type: message
-        });
+        this.flashMSG.flashMSG(action.text,action.responseIndicator);
       },
       err => console.log(err),
       () => console.log('booking a ticket...')
@@ -110,31 +88,9 @@ export class EventComponent implements OnInit,OnDestroy {
 
 
   deleteEvent(event_id:number){
-    let message;
     this.eventService.deleteEvent(event_id).subscribe( action =>{
 
-        switch (action.responseIndicator) {
-          case 0:
-            message = "danger";
-            break;
-          case 1:
-            message = "warning";
-            break;
-          case 2:
-            message = "success";
-            break;
-
-        }
-        this.NgFlashMessageService.showFlashMessage({
-          // Array of messages each will be displayed in new line
-          messages: [action.text],
-          // Whether the flash can be dismissed by the user defaults to false
-          dismissible: true,
-          // Time after which the flash disappears defaults to 2000ms
-          timeout: 2000,
-          // Type of flash message, it defaults to info and success, warning, danger types can also be used
-          type: message
-        });
+        this.flashMSG.flashMSG(action.text,action.responseIndicator);
         this.getEvents();
       },
       err => console.log(err),
@@ -142,6 +98,6 @@ export class EventComponent implements OnInit,OnDestroy {
     )
   }
 
-ngOnDestroy(): void {
+  ngOnDestroy(): void {
 
 }}

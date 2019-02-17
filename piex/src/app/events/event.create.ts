@@ -2,9 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
-import { NgFlashMessageService } from 'ng-flash-messages';
 import { Router} from "@angular/router";
-import { MessageService} from "../service/MessageService";
+import {AlertService} from "../service/alert.service";
 
 @Component(
   {
@@ -17,9 +16,9 @@ export class EventCreate implements OnInit{
   showMSG: boolean = false;
   currentUser: UserLogin;
   myReactiveForm: FormGroup;
-  constructor(private messageService: MessageService,
+  constructor(
     private Router: Router,
-    private NgFlashMessageService: NgFlashMessageService,
+    private flashMSG:AlertService,
     private formBuilder: FormBuilder, private eventService: eventService) { }
 
   ngOnInit() {
@@ -34,34 +33,12 @@ export class EventCreate implements OnInit{
     });
   }
   onSubmit() {
-    let message;
     this.myReactiveForm.patchValue({'organizer':''+this.currentUser.userId})
     this.eventService.addEvent(this.myReactiveForm.value).subscribe(action=>{
-      this.messages = action.text;
       this.showMSG = true;
-        switch (action.responseIndicator) {
-          case 0:
-            message = "danger";
-            break;
-          case 1:
-            message = "warning";
-            break;
-          case 2:
-            message = "success";
-            break;
+        this.flashMSG.flashMSG(action.text,action.responseIndicator);
 
-        }
-        this.NgFlashMessageService.showFlashMessage({
-          // Array of messages each will be displayed in new line
-          messages: [action.text],
-          // Whether the flash can be dismissed by the user defaults to false
-          dismissible: true,
-          // Time after which the flash disappears defaults to 2000ms
-          timeout: 2000,
-          // Type of flash message, it defaults to info and success, warning, danger types can also be used
-          type: message
-        });
-
+        //todo find out how these functions work in order so that it flash msg then wait then route
         this.wait(3000);
         this.Router.navigate(["/events"]);
       },

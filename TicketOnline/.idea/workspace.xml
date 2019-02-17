@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d61f7393-804e-4693-b9a4-5d24fbf7a769" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../piex/src/app/comments/comment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../piex/src/app/comments/commentDTO.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../piex/src/app/comments/commentService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/business/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/business/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/data/entity/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/data/entity/Comments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/data/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/data/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/web/application/CommentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ticketing/sql/web/application/CommentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ticketing/sql/business/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ticketing/sql/business/service/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ticketing/sql/data/entity/Comments.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ticketing/sql/data/entity/Comments.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ticketing/sql/data/repository/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ticketing/sql/data/repository/CommentRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ticketing/sql/web/application/CommentsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ticketing/sql/web/application/CommentsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../piex/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../piex/src/app/events/eventService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/events/eventService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../piex/src/app/events/single.event.html" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/events/single.event.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piex/src/app/events/admin.event.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/events/admin.event.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piex/src/app/events/event.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/events/event.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piex/src/app/events/event.create.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/events/event.create.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../piex/src/app/events/single.event.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/events/single.event.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piex/src/app/service/alert.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../piex/src/app/service/alert.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
