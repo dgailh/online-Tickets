@@ -53,4 +53,8 @@ export class UserService {
   deleteTicket(ticket_id:number): Observable<Response>{
     return this.http.get<Response>('api/tickets/removeTicket/'+ticket_id)
   }
+
+  checkEmail(e: string){
+    return this.http.get<Response>('api/user/email/'+e)
+  }
 }

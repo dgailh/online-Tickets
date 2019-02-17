@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserDataController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -42,6 +42,7 @@ public Map login(Principal principal){
 
     }
 
+    //working but disabled and need functionalities for text and data in it
     @RequestMapping(value = "/sendNot", method = RequestMethod.GET)
     public ResponseEntity sendEmail() {
         String text;
@@ -85,4 +86,8 @@ public Map login(Principal principal){
         else return ResponseEntity.badRequest().body("user Not Found");
     }
 
+    @RequestMapping(value = "/email/{email}")
+    public ResponseEntity checkEmail(@PathVariable String email){
+        return ResponseEntity.ok(this.userService.findByEmailSignUp(email));
+    }
 }

@@ -2,7 +2,13 @@ package com.ticketing.sql.data.dto;
 // this method send a json to the web app to inform it that
 // the request have been handled with the proper message.
 public class ServerResponse {
+    public ServerResponse(){
 
+    }
+    public ServerResponse(String text,int indicator){
+        this.setText(text);
+        this.setResponseIndicator(indicator);
+    }
     private String text;
 
     //for front-end to tell which color to show if it's success or failed  message.

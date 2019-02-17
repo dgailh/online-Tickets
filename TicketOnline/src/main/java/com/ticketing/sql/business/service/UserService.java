@@ -1,6 +1,7 @@
 package com.ticketing.sql.business.service;
 
 import com.ticketing.sql.business.domain.ObjectMapperUtils;
+import com.ticketing.sql.data.dto.ServerResponse;
 import com.ticketing.sql.data.dto.UsersDTO;
 import com.ticketing.sql.data.entity.Users;
 import com.ticketing.sql.data.repository.RolesRepository;
@@ -78,5 +79,12 @@ public class UserService {
         usersDTO.setRole(users.getRoles().getName());
         return usersDTO;
     }
+    public ServerResponse findByEmailSignUp(String email) {
+        Optional <Users> users = usersRepository.findByEmail(email);
+        if (users.isPresent())
+            return new ServerResponse("Email already Used",1);
 
+        else
+            return new ServerResponse("no account with that email:"+email,2);
+    }
 }
