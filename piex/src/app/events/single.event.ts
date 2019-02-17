@@ -78,12 +78,14 @@ export class SingleEvent implements OnInit{
 
   addComment(comment:string){
 
-    if (comment =="") return;
-    this.nComment = new CommentDTO(comment,this.event_id,this.loggedUser.userId);
+    if (comment.trim() =="") return;
+    this.nComment = new CommentDTO(comment,this.loggedUser.userId,this.event_id);
     console.log(JSON.stringify(this.nComment));
     this.commentService.addComment(this.nComment).subscribe(data =>{
       this.flashMSG.flashMSG(data.text,data.responseIndicator);
-        this.comments(this.event_id);
+      this.comments(this.event_id);
+      // to empty the comment input after taking the value from it
+      this.newComment="";
     },
       error1 => console.log(error1),
       ()=> console.log("adding comment"));

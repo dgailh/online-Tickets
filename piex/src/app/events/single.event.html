@@ -26,9 +26,10 @@
     </li>
   </ul>
   <label> comment here: <br/>
-    <input type="text" [(ngModel)]="newComment"> <br/>
+    <input id="comment_input" type="text" [(ngModel)]="newComment"> <br/>
   </label>
-  <button (click)="addComment(newComment)"> comment</button>
+  <button (click)="addComment(newComment)"
+          onClick="document.getElementById('comment_input').value = ''"> comment</button>
 </div>
 
 
