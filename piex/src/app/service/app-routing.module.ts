@@ -7,6 +7,7 @@ import {LoginComponent} from "../login/login.component";
 import {EventComponent} from "../events/event.component";
 import {AdminEvent} from "../events/admin.event";
 import {EventCreate} from "../events/event.create";
+import {SingleEvent} from "../events/single.event";
 
 const routes: Routes = [
   {path: '', component: AppComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'events', component: EventComponent},
   {path: 'admin/events', component:AdminEvent},
   {path: 'events/create', component:EventCreate},
+  {path: 'events/event', component:SingleEvent},
   // {path: 'detail/:id', component: CityDetailComponent}
 ];
 

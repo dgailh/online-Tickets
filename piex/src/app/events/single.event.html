@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-
+<H1>
+  {{event.name }} <br/>
+  {{event.seats - event.taken}} left <br/>
+  {{event.time}} - {{event.location}} <br/>
+  {{event.organizer.first_name}} {{event.organizer.last_name}} - {{event.organizer.phone}} <br/>
+  <button > Book</button>
+  <button> Comment</button>
+</H1>
 </body>
 </html>

@@ -1,10 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
 import { NgFlashMessageService } from 'ng-flash-messages';
 import { Router} from "@angular/router";
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { MessageService} from "../service/MessageService";
 
 @Component(
@@ -64,7 +63,6 @@ export class EventCreate implements OnInit{
         });
 
         this.wait(3000);
-        //this.messageService.sendMessage(action);
         this.Router.navigate(["/events"]);
       },
       err => console.log(err),
