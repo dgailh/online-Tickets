@@ -5,13 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-<H1>
+<ng-flash-message>
+</ng-flash-message>
+<p *ngIf="completedEvent">
   {{event.name }} <br/>
   {{event.seats - event.taken}} left <br/>
   {{event.time}} - {{event.location}} <br/>
   {{event.organizer.first_name}} {{event.organizer.last_name}} - {{event.organizer.phone}} <br/>
-  <button > Book</button>
+  <button (click)="bookATicket(event.id)"> Book</button>
   <button> Comment</button>
-</H1>
+</p>
+<br/>
+<br/>
+<div *ngIf="completedComments">
+<h1>Comment section: </h1>
+  <ul *ngFor="let comment of comments$">
+    <li>
+      {{comment.user.first_name}}: <br/>
+      {{comment.comment}}
+    </li>
+  </ul>
+  <label> comment here: <br/>
+    <input type="text" [(ngModel)]="newComment"> <br/>
+  </label>
+  <button (click)="addComment(newComment)"> comment</button>
+</div>
+
+
 </body>
 </html>

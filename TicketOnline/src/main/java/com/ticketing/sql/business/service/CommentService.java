@@ -1,6 +1,7 @@
 package com.ticketing.sql.business.service;
 
 import com.ticketing.sql.data.dto.CommentsDTO;
+import com.ticketing.sql.data.dto.ServerResponse;
 import com.ticketing.sql.data.entity.Comments;
 import com.ticketing.sql.data.entity.Events;
 import com.ticketing.sql.data.entity.Users;
@@ -29,11 +30,12 @@ public class CommentService {
         this.usersRepository = usersRepository;
     }
 
-    public List<Comments> getComments() {
-        return (List<Comments>) this.commentRepository.findAll();
+    public List<Comments> getComments(long event_id) {
+        return this.commentRepository.findByEvent_Id(event_id);
     }
 
-    public boolean addComment(CommentsDTO object) {
+    public ServerResponse addComment(CommentsDTO object) {
+        ServerResponse serverResponse = new ServerResponse();
 
         Comments comment = modelMapper.map(object, Comments.class);
         if (usersRepository.findById(object.getUser()).isPresent()
@@ -41,8 +43,12 @@ public class CommentService {
             comment.setUser(usersRepository.findById(object.getUser()).get());
             comment.setEvent(eventsRepository.findById(object.getEvent()).get());
             this.commentRepository.save(comment);
-            return true;
+            serverResponse.setText("comment Added!");
+            serverResponse.setResponseIndicator(2);
+            return serverResponse;
         }
-        return false;
+        serverResponse.setText("something went wrong.");
+        serverResponse.setResponseIndicator(0);
+        return serverResponse;
     }
 }

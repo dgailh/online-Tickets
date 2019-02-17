@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-import {map, catchError} from "rxjs/operators";
+import { catchError} from "rxjs/operators";
 import {of} from "rxjs";
 import {Event} from "./Event";
 import {Response} from "../service/server.response";
@@ -61,4 +61,6 @@ export class eventService{
   getSingleEvent(event_id:number): Observable<Event>{
     return this.http.get<Event>('api/event/events/'+event_id)
   }
+
+
 }

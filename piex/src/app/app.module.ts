@@ -19,6 +19,7 @@ import {EventCreate} from "./events/event.create";
 import {AdminEvent} from "./events/admin.event";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {SingleEvent} from "./events/single.event";
+import {CommentService} from "./comments/commentService";
 
 
 
@@ -47,7 +48,7 @@ import {SingleEvent} from "./events/single.event";
   ],
   providers: [        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    UserService, eventService],
+    UserService, eventService, CommentService],
   bootstrap: [MainComponent]
 })
 export class AppModule { }

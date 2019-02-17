@@ -10,7 +10,8 @@ public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Max(value = 300,message = "comment cannot exceed 300 latter.")
+
+    //@Max(value = 300,message = "comment cannot exceed 300 latter.")
     private String comment;
     @ManyToOne
     private Events event;
