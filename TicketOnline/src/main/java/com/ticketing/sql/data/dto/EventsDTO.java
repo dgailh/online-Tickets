@@ -18,7 +18,17 @@ public class EventsDTO {
     private int taken; // how many seats have been taken in the event
     private String location;
     //@NotEmpty
-    private long organizer;
+    private long organizer_id;
+    @ColumnDefault("0")
+    private boolean deleted;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public long getId() {
         return id;
@@ -68,11 +78,11 @@ public class EventsDTO {
         this.location = location;
     }
 
-    public long getOrganizer() {
-        return organizer;
+    public long getOrganizer_id() {
+        return organizer_id;
     }
 
-    public void setOrganizer(long organizer) {
-        this.organizer = organizer;
+    public void setOrganizer_id(long organizer_id) {
+        this.organizer_id = organizer_id;
     }
 }

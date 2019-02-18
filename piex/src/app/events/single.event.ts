@@ -18,6 +18,7 @@ import {EventService} from "./eventService";
 //todo create route and activated route to take param from url of the event id oke?
 export class SingleEvent implements OnInit{
   isGuest: boolean;
+  isOld: boolean =false;
   event: Event;
   event_id: number;
   no_param: boolean;
@@ -48,6 +49,8 @@ export class SingleEvent implements OnInit{
         if (this.no_param){
           this.Router.navigate(['/events']);
         }
+
+
       },
       error1 => console.log(error1),
       () => console.log("getting event")
@@ -66,7 +69,10 @@ export class SingleEvent implements OnInit{
 
       this.event = data;
       this.completedEvent = true;
-    })
+      //for old events and deleted ones. if the user went to them through Organizer
+      // since you can view old events to check them from organizer profile.
+      if (Date.parse(this.event.time) <= Date.now()) this.isOld=true;
+        });
   }
   comments(event_id : number){
 

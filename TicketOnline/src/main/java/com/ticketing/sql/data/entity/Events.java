@@ -19,7 +19,7 @@ public class Events {
     @Max(value = 300, message = "maximum seats allowed is 300")
     private int seats;
     @ColumnDefault("0")
-    @Max(value = 5, message = "max capacity reached for this event")
+    //@Max(value = 5, message = "max capacity reached for this event")
     private int taken;
     private String location;
     @ColumnDefault("0")

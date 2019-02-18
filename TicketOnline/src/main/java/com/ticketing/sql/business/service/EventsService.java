@@ -1,5 +1,6 @@
 package com.ticketing.sql.business.service;
 
+import com.ticketing.sql.business.domain.ObjectMapperUtils;
 import com.ticketing.sql.data.dto.EventsDTO;
 import com.ticketing.sql.data.dto.ServerResponse;
 import com.ticketing.sql.data.entity.Events;
@@ -39,7 +40,7 @@ public class EventsService {
 
     public ServerResponse addEvent(EventsDTO object) {
         Events newEvent = modelMapper.map(object,Events.class);
-        newEvent.setOrganizer(usersRepository.findById(object.getOrganizer()).get());
+        newEvent.setOrganizer(usersRepository.findById(object.getOrganizer_id()).get());
         if (newEvent.getOrganizer() == null){
             serverResponse.setText("wrong or missing organizer id");
             serverResponse.setResponseIndicator(0);
@@ -114,7 +115,13 @@ public class EventsService {
     }
 
 
-    public List<Events> findByOrganizer( long org_id) {
-        return eventsRepository.findByOrganizerId(org_id);
+    public List<EventsDTO> findByOrganizer( long org_id) {
+        //made a long for to assign organizer id instead of relationship to avoid exposing data
+        List<Events> events =eventsRepository.findByOrganizerId(org_id);
+        List<EventsDTO> eventsDTO = ObjectMapperUtils.mapAll(events,EventsDTO.class);
+        for (int i=0;i<events.size();i++){
+            eventsDTO.get(i).setOrganizer_id(events.get(i).getOrganizer().getId());
+        }
+        return eventsDTO;
     }
 }

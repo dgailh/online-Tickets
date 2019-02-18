@@ -7,6 +7,8 @@ export class Event {
               public seats : number,
               public taken : number,
               public location : string,
-              public organizer : User) {
+              public organizer : User,
+              public deleted : boolean
+              ) {
   }
 }
