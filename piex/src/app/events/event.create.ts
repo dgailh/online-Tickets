@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
 import { Router} from "@angular/router";
 import {AlertService} from "../service/alert.service";
+import {EventService} from "./eventService";
 
 @Component(
   {
@@ -19,7 +19,7 @@ export class EventCreate implements OnInit{
   constructor(
     private Router: Router,
     private flashMSG:AlertService,
-    private formBuilder: FormBuilder, private eventService: eventService) { }
+    private formBuilder: FormBuilder, private eventService:EventService) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

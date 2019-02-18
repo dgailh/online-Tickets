@@ -13,13 +13,14 @@ import {BasicAuthInterceptor} from "./service/basic-auth.interceptor";
 import {ErrorInterceptor} from "./service/error.interceptor";
 import {HomeComponent} from "./home/home.component";
 import {EventComponent} from "./events/event.component";
-import {eventService} from "./events/eventService";
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import {EventCreate} from "./events/event.create";
 import {AdminEvent} from "./events/admin.event";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {SingleEvent} from "./events/single.event";
 import {CommentService} from "./comments/commentService";
+import {SingleUserPage} from "./user/single.user/single.user.page";
+import {EventService} from "./events/eventService";
 
 
 
@@ -35,6 +36,7 @@ import {CommentService} from "./comments/commentService";
     EventCreate,
     AdminEvent,
     SingleEvent,
+    SingleUserPage,
 
   ],
   imports: [
@@ -48,7 +50,7 @@ import {CommentService} from "./comments/commentService";
   ],
   providers: [        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    UserService, eventService, CommentService],
+    UserService, EventService, CommentService],
   bootstrap: [MainComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {eventService} from "./eventService";
 import {Event} from "./Event";
 import {UserLogin} from "../user/user.login";
 import {AlertService} from "../service/alert.service";
+import {EventService} from "./eventService";
 
 
 @Component(
@@ -25,7 +25,7 @@ export class EventComponent implements OnInit,OnDestroy {
 
   constructor(private Router: Router,
               private flashMSG:AlertService ,private route: ActivatedRoute,
-              private eventService: eventService){
+              private eventService:EventService){
 
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.loggedUser) {//

@@ -11,7 +11,7 @@ const headers = new HttpHeaders().set('Content-Type', 'application/json');
 const API_ARGS = {headers: headers};
 
 @Injectable()
-export class eventService{
+export class EventService{
 
   constructor(private http: HttpClient) {
   }

@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Event} from "./Event";
@@ -8,6 +7,7 @@ import {CommentService} from "../comments/commentService";
 import {Comment} from "../comments/comment";
 import {CommentDTO} from "../comments/commentDTO";
 import {AlertService} from "../service/alert.service";
+import {EventService} from "./eventService";
 
 @Component(
   {
@@ -32,7 +32,7 @@ export class SingleEvent implements OnInit{
               private NgFlashMessageService:NgFlashMessageService,
               private commentService: CommentService,
               private Router: Router,private route: ActivatedRoute,
-               private eventService: eventService){
+               private eventService:EventService){
 
     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!this.loggedUser){

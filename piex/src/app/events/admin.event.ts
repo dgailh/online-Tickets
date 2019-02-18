@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {eventService} from "./eventService";
 import {UserLogin} from "../user/user.login";
 import {Event} from "./Event";
 import {Router} from "@angular/router";
 import {AlertService} from "../service/alert.service";
+import {EventService} from "./eventService";
 
 @Component(
   {
@@ -17,7 +17,7 @@ export class AdminEvent implements OnInit{
   events$ : Event[];
 
   constructor(private Router:Router,private flashMSG:AlertService,
-              private eventService: eventService){
+              private eventService:EventService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser.userRole !='admin')
       this.Router.navigate(['/events']);
