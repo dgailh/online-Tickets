@@ -106,6 +106,7 @@ export class SingleEvent implements OnInit{
     this.eventService.bookATicket(this.loggedUser.userId,event_Id).subscribe(
       action => {
         this.flashMSG.flashMSG(action.text,action.responseIndicator);
+        this.eventDetails(this.event.id);
       },
       err => console.log(err),
       () => console.log('booking a ticket...')
