@@ -112,4 +112,9 @@ public class EventsService {
     public List<Events> findByCityTime(LocalDate date, String city) {
         return eventsRepository.findByLocationAndTimeEqualsAndApprovedTrueAndDeletedFalse(city, date);
     }
+
+
+    public List<Events> findByOrganizer( long org_id) {
+        return eventsRepository.findByOrganizerId(org_id);
+    }
 }

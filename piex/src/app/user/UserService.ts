@@ -27,6 +27,10 @@ export class UserService {
     )
   }
 
+  getUser(user_id:number): Observable<User> {
+    return this.http.get<User>('api/user/users/'+user_id);
+  }
+
   addUser(user:any): Observable<User> {
     console.log(('api/user/create' + JSON.stringify(user) + API_ARGS));
     return this.http.post<User>('api/user/create', JSON.stringify(user), API_ARGS)

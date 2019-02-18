@@ -16,7 +16,6 @@ import {EventComponent} from "./events/event.component";
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import {EventCreate} from "./events/event.create";
 import {AdminEvent} from "./events/admin.event";
-import { FlashMessagesModule } from 'angular2-flash-messages';
 import {SingleEvent} from "./events/single.event";
 import {CommentService} from "./comments/commentService";
 import {SingleUserPage} from "./user/single.user/single.user.page";
@@ -46,7 +45,6 @@ import {EventService} from "./events/eventService";
     ReactiveFormsModule,
     HttpClientModule,
     NgFlashMessagesModule.forRoot(),
-    FlashMessagesModule.forRoot()
   ],
   providers: [        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

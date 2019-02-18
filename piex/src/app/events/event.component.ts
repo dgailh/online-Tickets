@@ -54,22 +54,8 @@ export class EventComponent implements OnInit,OnDestroy {
   };
 
   //if to show the extra details
-  advanceEvent(event : Event){
-    this.Router.navigate(['/events/event',{id: event.id}]);
-    if (this.showDetails == true && event.id == this.prevId) {
-      this.showDetails = false;
-      this.currentEvent = null;
-      this.prevId = null;
-    }
-    else if (this.showDetails == true){
-      this.showDetails = true;
-      this.currentEvent = event;
-      this.prevId = this.currentEvent.id;}
-      else {
-        this.showDetails= true;
-        this.currentEvent = event;
-        this.prevId = this.currentEvent.id;
-      }
+  advanceEvent(event_id : number){
+    this.Router.navigate(['/events/event',{id: event_id}]);
   }
 
   bookATicket(eventID :number ){

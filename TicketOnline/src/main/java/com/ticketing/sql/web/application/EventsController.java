@@ -96,4 +96,9 @@ public class EventsController {
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(eventsService.findByCityTime(LocalDate.parse(theDate), theCity));
     }
+
+    @RequestMapping(value = "/events/byorganizer/{org_id}")
+    public ResponseEntity getEventsByOrganizer(@PathVariable long org_id){
+        return ResponseEntity.ok(this.eventsService.findByOrganizer(org_id));
+    }
 }

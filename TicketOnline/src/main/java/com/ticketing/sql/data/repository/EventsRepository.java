@@ -13,4 +13,5 @@ public interface EventsRepository extends CrudRepository<Events, Long> {
     List<Events> findByLocationAndApprovedTrueAndDeletedFalseAndTimeAfter(String Location, LocalDate date);
     List<Events> findByLocationAndTimeEqualsAndApprovedTrueAndDeletedFalse(String Location,LocalDate date);
     List<Events> findByTimeAndApprovedTrueAndDeletedFalse(LocalDate eTime);
+    List<Events> findByOrganizerId(long org_id);
 }

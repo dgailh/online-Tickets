@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
+<ng-flash-message>
+</ng-flash-message>
 
+<h1 *ngIf="!loaded"> Loading ....</h1>
+
+<div *ngIf="loaded">
+<p>
+  {{user_data.first_name}} {{user_data.middle_name}} {{user_data.last_name}} <br/></p>
+  <p><b>{{user_data.role}}</b></p>
+  <p>{{user_data.phone}}</p>
+
+<br/>
+<br/>
+  <div *ngIf="eventsLoaded">
+    <ul *ngFor="let event of events$">
+      <li>
+        {{event.name}} - {{event.location}} -{{event.time}}
+        <button (click)="advanceEvent(event.id)">View</button>
+      </li>
+    </ul>
+  </div>
+
+
+  <br/>
+  <br/>
+<div *ngIf="isOwner">
+  <ul *ngFor="let ticket of tickets$">
+    <li>
+      {{ticket.event.name}} - {{ticket.event.time}} - {{ticket.event.location}}
+      <button (click)="deleteTicket(ticket.id,ticket.user.id)">Cancel Ticket</button>
+    </li>
+  </ul>
+</div>
+</div>
 </body>
 </html>

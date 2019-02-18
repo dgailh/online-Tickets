@@ -47,10 +47,9 @@ public Map login(Principal principal){
     public ResponseEntity sendEmail() {
         String text;
 
-        Users users = userService.findId(2).get();
+        UsersDTO users = userService.findId(2);
         text = "email sent";
         notificationService.sendNotifications(users);
-
         return ResponseEntity.ok(text);
     }
 
@@ -73,10 +72,7 @@ public Map login(Principal principal){
 
     @RequestMapping(value = "/users/{id}")
     public ResponseEntity findById(@PathVariable long id) {
-        Optional<Users> users = userService.findId(id);
-        if (users.isPresent() && !users.get().isEnabled()) {
-            return ResponseEntity.ok(users);
-        } else return ResponseEntity.badRequest().body("user deleted or not found");
+            return ResponseEntity.ok(userService.findId(id));
     }
 
     @RequestMapping(value = "/removeUser/{id}")

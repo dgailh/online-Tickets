@@ -14,7 +14,7 @@
     {{event.name }} <br/>
     {{event.seats - event.taken}} left <br/>
     {{event.time}} - {{event.location}} <br/>
-    <button (click)="advanceEvent(event)">Show details</button>
+    <button (click)="advanceEvent(event.id)">Show details</button>
     <button (click)="bookATicket(event.id)">Book for This Event</button>
     <br/>
     <div *ngIf="!isGuest">

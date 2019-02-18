@@ -62,5 +62,7 @@ export class EventService{
     return this.http.get<Event>('api/event/events/'+event_id)
   }
 
-
+  getEventsByOrganizer(organizer_id:number){
+    return this.http.get<Event[]>('api/event/events/byorganizer/'+organizer_id)
+  }
 }

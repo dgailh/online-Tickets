@@ -3,9 +3,9 @@
   </ng-flash-message>
   <ul *ngFor="let user of users$ ">
     <li>
-      {{user.first_name}} - {{user.last_name}} - {{user.email}} - {{user.birth}} - {{user.phone}}
+      <a routerLink="user/{{user.id }}" class="btn btn-primary">{{user.first_name}}  {{user.last_name}}</a>
       <button class="btn btn-warning btn-sm"
-              *ngIf="isAdmin || loggedUser.userId==user.id" (click)=updateUser(user)>update </button>-
+              *ngIf="isAdmin || loggedUser.userId==user.id" (click)=updateUser(user)>update </button>
       <button class="btn btn-warning btn-sm"
               *ngIf="isAdmin || loggedUser.userId==user.id" (click)=deleteUser(user.id)>delete </button>
       <br/>

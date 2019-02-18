@@ -60,8 +60,15 @@ public class UserService {
         return false;
     }
 
-    public Optional<Users> findId(long id) {
-        return this.usersRepository.findById(id);
+    public UsersDTO findId(long id) {
+        Optional <Users> users = this.usersRepository.findById(id);
+        if (users.isPresent()){
+             UsersDTO usersDTOS = ObjectMapperUtils.map(users.get(), UsersDTO.class);
+        usersDTOS.setRole(users.get().getRoles().getName());
+            return usersDTOS;
+        }
+        else
+            return new UsersDTO();
     }
 
     public boolean softDelete(long id) {

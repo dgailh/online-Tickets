@@ -8,6 +8,7 @@ import {EventComponent} from "../events/event.component";
 import {AdminEvent} from "../events/admin.event";
 import {EventCreate} from "../events/event.create";
 import {SingleEvent} from "../events/single.event";
+import {SingleUserPage} from "../user/single.user/single.user.page";
 
 const routes: Routes = [
   {path: '', component: AppComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'admin/events', component:AdminEvent},
   {path: 'events/create', component:EventCreate},
   {path: 'events/event', component:SingleEvent},
-  // {path: 'detail/:id', component: CityDetailComponent}
+  {path: 'users/user/:id', component:SingleUserPage},
 ];
 
 @NgModule({
