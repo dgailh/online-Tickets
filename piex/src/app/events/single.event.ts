@@ -8,6 +8,7 @@ import {Comment} from "../comments/comment";
 import {CommentDTO} from "../comments/commentDTO";
 import {AlertService} from "../service/alert.service";
 import {EventService} from "./eventService";
+import {LikesJSON} from "./likes.and.dislikes/likesJSON";
 
 @Component(
   {
@@ -23,11 +24,15 @@ export class SingleEvent implements OnInit{
   event_id: number;
   no_param: boolean;
   loggedUser: UserLogin;
+  likesJSON :LikesJSON;
   completedComments: boolean;
   completedEvent: boolean;
+  completedLikes: boolean;
   comments$: Comment[];
   newComment: string;
   nComment : CommentDTO;
+  likes : number;
+  dislikes: number;
 
   constructor(private flashMSG:AlertService,
               private NgFlashMessageService:NgFlashMessageService,
@@ -64,14 +69,18 @@ export class SingleEvent implements OnInit{
 
   }
 
-  eventDetails(id:number){
-    this.eventService.getSingleEvent(id).subscribe(data =>{
+  eventDetails(event_id:number){
+    this.eventService.getSingleEvent(event_id).subscribe(data =>{
 
       this.event = data;
       this.completedEvent = true;
       //for old events and deleted ones. if the user went to them through Organizer
       // since you can view old events to check them from organizer profile.
-      if (Date.parse(this.event.time) <= Date.now()) this.isOld=true;
+      //also it show likes and dislikes, only who have ticket and attended the event can rate it.
+      if (Date.parse(this.event.time) <= Date.now()){
+        this.isOld=true;
+        this.callLikes();
+      }
         });
   }
   comments(event_id : number){
@@ -113,6 +122,34 @@ export class SingleEvent implements OnInit{
     )
   }
 
+  callLikes(){
+    this.eventService.getLikes(this.event.id).subscribe(data=>{
+      this.likes = data.likes;
+      this.dislikes = data.dislikes;
+      this.completedLikes = true;
+    },error1 => console.log(error1),
+      ()=> {console.log("getting likes and dislikes ")})
+  }
 
+  like(){
+    this.initLikes(true,false)
 
+  }
+
+  dislike(){
+    this.initLikes(false,true)
+
+  }
+
+  initLikes(like:boolean,dislike : boolean){
+
+    this.likesJSON.like=like;
+    this.likesJSON.dislike=dislike;
+    this.eventService.addLike(this.likesJSON,this.loggedUser.userId).subscribe(data=>{
+      this.flashMSG.flashMSG(data.text,data.responseIndicator);
+      //refresh page
+      this.eventDetails(this.event_id);
+      }
+    );
+  }
 }

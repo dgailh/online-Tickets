@@ -1,18 +1,20 @@
 package com.ticketing.sql.data.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 
 @Entity
-@Table(name = "Rate")
-public class Rate {
+@Table(name = "Likes")
+public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String comment;
-    @Max(value = 5, message = "stars must be between 1 and 5")
-    private int stars;
+    @ColumnDefault("0")
+    private boolean likes;
+    @ColumnDefault("0")
+    private boolean dislikes;
     @ManyToOne
     private Tickets ticket;
 
@@ -24,20 +26,20 @@ public class Rate {
         this.id = id;
     }
 
-    public String getComment() {
-        return comment;
+    public boolean isLikes() {
+        return likes;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setLikes(boolean likes) {
+        this.likes = likes;
     }
 
-    public int getStars() {
-        return stars;
+    public boolean isDislikes() {
+        return dislikes;
     }
 
-    public void setStars(int stars) {
-        this.stars = stars;
+    public void setDislikes(boolean dislikes) {
+        this.dislikes = dislikes;
     }
 
     public Tickets getTicket() {

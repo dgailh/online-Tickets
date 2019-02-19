@@ -11,4 +11,5 @@ import java.util.List;
 public interface TicketsRepository extends CrudRepository<Tickets, Long> {
 
     List<Tickets> findByUserAndDeletedFalse(Users user);
+    Tickets findByUserIdAndDeletedFalse(long user_id);
 }

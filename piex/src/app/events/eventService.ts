@@ -6,6 +6,8 @@ import { catchError} from "rxjs/operators";
 import {of} from "rxjs";
 import {Event} from "./Event";
 import {Response} from "../service/server.response";
+import {Likes} from "./likes.and.dislikes/likes";
+import {LikesJSON} from "./likes.and.dislikes/likesJSON";
 
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 const API_ARGS = {headers: headers};
@@ -64,5 +66,12 @@ export class EventService{
 
   getEventsByOrganizer(organizer_id:number){
     return this.http.get<Event[]>('api/event/events/byorganizer/'+organizer_id)
+  }
+  getLikes(event_id:number){
+    return this.http.get<Likes>('api/like/likesanddislikes/'+event_id);
+  }
+
+  addLike(likeJSON:LikesJSON,user_id:number){
+    return this.http.post<Response>('api/like/addLike/'+user_id,JSON.stringify(likeJSON),API_ARGS)
   }
 }
