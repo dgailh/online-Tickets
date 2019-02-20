@@ -14,6 +14,7 @@ import {EventService} from "./eventService";
 export class EventCreate implements OnInit{
   messages: string;
   showMSG: boolean = false;
+  isOrganizerOrAdmin: boolean = false;
   currentUser: UserLogin;
   myReactiveForm: FormGroup;
   constructor(
@@ -23,6 +24,13 @@ export class EventCreate implements OnInit{
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if ( this.currentUser.userRole == 'admin'|| this.currentUser.userRole =='organizer') {
+      this.isOrganizerOrAdmin = true;}
+
+    if (!this.isOrganizerOrAdmin) {
+      this.Router.navigate(['/home']);
+    }
+
     this.myReactiveForm = this.formBuilder.group({
       name: [``, Validators.compose([Validators.required])],
       time: [``, Validators.compose([Validators.required])],

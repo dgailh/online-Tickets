@@ -20,6 +20,7 @@ import {LikesJSON} from "./likes.and.dislikes/likesJSON";
 export class SingleEvent implements OnInit{
   isGuest: boolean;
   isOld: boolean =false;
+  isDeleted: boolean= false;
   event: Event;
   event_id: number;
   no_param: boolean;
@@ -79,6 +80,7 @@ export class SingleEvent implements OnInit{
       //also it show likes and dislikes, only who have ticket and attended the event can rate it.
       if (Date.parse(this.event.time) <= Date.now()){
         this.isOld=true;
+        this.isDeleted= this.event.deleted;
         this.callLikes();
       }
         });
