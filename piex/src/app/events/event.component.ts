@@ -84,6 +84,15 @@ export class EventComponent implements OnInit,OnDestroy {
     )
   }
 
+  searchByCity(city: string){
+    //this.events$ = this.events$.
+  }
+
+  searchByDate(event_date: Date){
+
+  }
+
   ngOnDestroy(): void {
 
-}}
+  }
+}

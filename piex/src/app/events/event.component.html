@@ -9,6 +9,20 @@
 <p *ngIf="isGuest" style="text-decoration: underline; color: crimson" >To book for event you need to sign in</p>
 <ng-flash-message>
 </ng-flash-message>
+
+<!--search not finished yet-->
+<div *ngIf="false">
+<label> search event
+<input type="text">
+  <button>search</button>
+</label>
+<br/>
+<label> search event by date
+  <input type="date">
+  <button>search</button>
+</label>
+</div>
+
 <ul *ngFor="let event of events$">
   <li >
     {{event.name }} <br/>

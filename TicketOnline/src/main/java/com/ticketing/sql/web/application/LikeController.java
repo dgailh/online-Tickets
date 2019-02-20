@@ -1,7 +1,6 @@
 package com.ticketing.sql.web.application;
 
 import com.ticketing.sql.business.service.LikeService;
-import com.ticketing.sql.data.dto.LikeAndDislikeDTO;
 import com.ticketing.sql.data.entity.Likes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
