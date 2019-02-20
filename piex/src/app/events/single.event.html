@@ -15,11 +15,11 @@
   {{event.taken}}/{{event.seats}} seats taken <br/>
   <button *ngIf="!isOld && !event.deleted" (click)="bookATicket(event.id)"> Book</button>
 </p>
-<p *ngIf="completedLikes">
+<div *ngIf="completedLikes">
     <button (click)="like()">likes {{likes}}</button>
   - <button (click)="dislike()">dislikes {{dislikes}}</button>
 
-</p>
+</div>
 <br/>
 <br/>
 <div *ngIf="completedComments">
@@ -30,11 +30,13 @@
       {{comment.comment}}
     </li>
   </ul>
-  <label *ngIf="!isOld && !event.deleted" > comment here: <br/>
+  <div *ngIf="!isOld">
+  <label *ngIf="!event.deleted" > comment here: <br/>
     <input  id="comment_input" type="text" [(ngModel)]="newComment"> <br/>
   <button  (click)="addComment(newComment)"
           onClick="document.getElementById('comment_input').value = ''"> comment</button>
   </label>
+  </div>
 </div>
 
 

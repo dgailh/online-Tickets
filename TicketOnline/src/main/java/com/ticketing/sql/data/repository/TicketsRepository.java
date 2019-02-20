@@ -12,4 +12,5 @@ public interface TicketsRepository extends CrudRepository<Tickets, Long> {
 
     List<Tickets> findByUserAndDeletedFalse(Users user);
     Tickets findByUserIdAndDeletedFalse(long user_id);
+    Tickets findByUserIdAndDeletedFalseAndEventId(long user_id, long event_id);
 }

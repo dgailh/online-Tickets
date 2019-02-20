@@ -18,6 +18,6 @@ public interface LikesRepository extends CrudRepository<Likes, Long> {
             "\t tickets.event_id= events.id AND events.id=?1", nativeQuery = true)
     int getSumOfDislikes(long event_id);
 
-    boolean findByTicketId(long ticket_id);
+    Likes findByTicketId(long ticket_id);
 
 }

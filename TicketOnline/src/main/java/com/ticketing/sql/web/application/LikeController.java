@@ -22,9 +22,10 @@ public class LikeController {
 
 
     //get a JSON with both likes and dislikes
-    @PostMapping(value = "/addLike/{user_id}")
-    public ResponseEntity createLike(@RequestBody @Valid Likes like, @PathVariable long user_id) {
-            return ResponseEntity.ok(this.likeService.addLike(like,user_id));
+    @PostMapping(value = "/addLike/{user_id}/{event_id}")
+    public ResponseEntity createLike(@RequestBody @Valid Likes like, @PathVariable long user_id,
+                                     @PathVariable long event_id) {
+            return ResponseEntity.ok(this.likeService.addLike(like,user_id,event_id));
     }
 
     //not used yet

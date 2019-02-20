@@ -36,13 +36,13 @@ public class LikeService {
 
 
     //todo fix it shouldn't return dto likes its different structure
-    public ServerResponse addLike(Likes like, long user_id) {
-        Tickets ticket = ticketsRepository.findByUserIdAndDeletedFalse(user_id);
+    public ServerResponse addLike(Likes like, long user_id, long event_id) {
+        Tickets ticket = ticketsRepository.findByUserIdAndDeletedFalseAndEventId(user_id, event_id);
         if (ticket != null) {
             // if both the user attended the event and his ticket is not deleted for any reason.
             if (ticket.isAttended() && !ticket.isDeleted()) {
                 //if the user already dis/liked the don't allow to like/dislike
-                if (!likesRepository.findByTicketId(ticket.getId())) {
+                if (likesRepository.findByTicketId(ticket.getId())==null) {
                     like.setTicket(ticket);
                     likesRepository.save(like);
                     return new ServerResponse("Thank you for using our service.", 2);

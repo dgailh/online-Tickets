@@ -141,11 +141,10 @@ export class SingleEvent implements OnInit{
 
   }
 
-  initLikes(like:boolean,dislike : boolean){
 
-    this.likesJSON.like=like;
-    this.likesJSON.dislike=dislike;
-    this.eventService.addLike(this.likesJSON,this.loggedUser.userId).subscribe(data=>{
+  initLikes(like: boolean,dislike: boolean){
+    this.likesJSON = new LikesJSON(like,dislike);
+    this.eventService.addLike(this.likesJSON,this.loggedUser.userId,this.event_id).subscribe(data=>{
       this.flashMSG.flashMSG(data.text,data.responseIndicator);
       //refresh page
       this.eventDetails(this.event_id);

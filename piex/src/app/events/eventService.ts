@@ -71,7 +71,9 @@ export class EventService{
     return this.http.get<Likes>('api/like/likesanddislikes/'+event_id);
   }
 
-  addLike(likeJSON:LikesJSON,user_id:number){
-    return this.http.post<Response>('api/like/addLike/'+user_id,JSON.stringify(likeJSON),API_ARGS)
+  addLike(likeJSON:LikesJSON,user_id:number, event_id:number){
+    console.log(JSON.stringify(likeJSON))
+    return this.http.post<Response>('api/like/addLike/'+user_id+'/'+event_id,
+      JSON.stringify(likeJSON),API_ARGS)
   }
 }
