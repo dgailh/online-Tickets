@@ -7,7 +7,15 @@
 <body>
 <ng-flash-message>
 </ng-flash-message>
-<ul *ngFor="let event of events$">
+
+<input placeholder="Search for event" [(ngModel)]="searchEvent">
+<br/>
+<input placeholder="Search for city" [(ngModel)]="searchCity">
+<br/>
+<input placeholder="format: year-month-day" [(ngModel)]="searchTime">
+
+<ul *ngFor="let event of events$ | search : 'name': searchEvent | search : 'time': searchTime
+                                 | search : 'location': searchCity">
   <li >
     {{event.name }} <br/>
     {{event.id}} <br/>

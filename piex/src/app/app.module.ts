@@ -20,6 +20,7 @@ import {SingleEvent} from "./events/single.event";
 import {CommentService} from "./comments/commentService";
 import {SingleUserPage} from "./user/single.user/single.user.page";
 import {EventService} from "./events/eventService";
+import { SearchPipe } from './search.pipe';
 
 
 
@@ -36,6 +37,7 @@ import {EventService} from "./events/eventService";
     AdminEvent,
     SingleEvent,
     SingleUserPage,
+    SearchPipe,
 
   ],
   imports: [

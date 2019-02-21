@@ -11,19 +11,17 @@
 </ng-flash-message>
 
 <!--search not finished yet-->
-<div *ngIf="false">
-<label> search event
-<input type="text">
-  <button>search</button>
-</label>
-<br/>
-<label> search event by date
-  <input type="date">
-  <button>search</button>
-</label>
-</div>
+<!--<div *ngFor="let event of events | search : searchText">-->
 
-<ul *ngFor="let event of events$">
+
+  <input placeholder="Search for event" [(ngModel)]="searchEvent">
+<br/>
+  <input placeholder="Search for city" [(ngModel)]="searchCity">
+<br/>
+  <input placeholder="format: year-month-day" [(ngModel)]="searchTime">
+
+<ul *ngFor="let event of events$ | search : 'name': searchEvent | search : 'time': searchTime
+                                 | search : 'location': searchCity">
   <li >
     {{event.name }} <br/>
     {{event.seats - event.taken}} left <br/>

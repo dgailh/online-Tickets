@@ -72,7 +72,6 @@ export class EventComponent implements OnInit,OnDestroy {
     )
   }
 
-
   deleteEvent(event_id:number){
     this.eventService.deleteEvent(event_id).subscribe( action =>{
 
@@ -82,14 +81,6 @@ export class EventComponent implements OnInit,OnDestroy {
       err => console.log(err),
       () => console.log('removing the event...')
     )
-  }
-
-  searchByCity(city: string){
-    //this.events$ = this.events$.
-  }
-
-  searchByDate(event_date: Date){
-
   }
 
   ngOnDestroy(): void {
