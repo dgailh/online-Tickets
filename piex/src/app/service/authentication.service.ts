@@ -4,22 +4,21 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {User} from "../user/User";
 import {Router} from "@angular/router";
+import {UserLogin} from "../user/user.login";
 
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  public currentUser: Observable<User>;
+  //public currentUser: Observable<UserLogin>;
+   currentUser:UserLogin;
 
   constructor(private http: HttpClient,private Router: Router,) {
   }
 
   login(email: string, password: string) {
-    let header= new HttpHeaders();
-    header = header.append('Authorization','Basic '+btoa(`${email}:${password}`))
-    return this.http.get<any>(`/api/user/login`, { headers: header})
+    return this.http.post<any>(`/api/user/login`, {email, password})
       .pipe(map(user => {
-        // login successful if there's token in the response
         if (user) {
           user.authdata = btoa(`${email}:${password}`);
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -32,7 +31,13 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    this.currentUser= null;
     this.Router.navigate(['/login']);
 
+  }
+
+  getRole(){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return this.currentUser.userRole;
   }
 }

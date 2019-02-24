@@ -1,7 +1,6 @@
 package com.ticketing.sql.business.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,7 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/user/create").permitAll()
+                //.antMatchers(HttpMethod.POST,"/api/user/create").permitAll()
+                .antMatchers("/api/user/login").permitAll()
                 .anyRequest().authenticated(); // disable security for testing
 //                .antMatchers("/login").permitAll()
 //                .antMatchers("/admin").hasAnyRole("Admin")

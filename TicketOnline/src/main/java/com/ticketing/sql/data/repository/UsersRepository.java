@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface UsersRepository extends CrudRepository<Users, Long> {
 
     List<Users> findByEnabledTrue();
+    boolean existsByEmailAndEnabledTrue(String e);
+    boolean existsByEmail(String e);
     Users findByEmailAndEnabledTrue(String e);
     Optional<Users> findByEmail(String e);
 }

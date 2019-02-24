@@ -9,19 +9,20 @@ import {AdminEvent} from "../events/admin.event";
 import {EventCreate} from "../events/event.create";
 import {SingleEvent} from "../events/single.event";
 import {SingleUserPage} from "../user/single.user/single.user.page";
+import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
   {path: '', component: AppComponent},
   {path: 'home', component: AppComponent},
-  {path: 'users', component: UserComponent},
-  {path: 'user/:id', component: UserComponent},
+  {path: 'users', component: UserComponent, canActivate : [AuthGuard]},
+  {path: 'user/:id', component: UserComponent, canActivate : [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'events', component: EventComponent},
-  {path: 'admin/events', component:AdminEvent},
-  {path: 'events/create', component:EventCreate},
-  {path: 'events/event', component:SingleEvent},
-  {path: 'users/user/:id', component:SingleUserPage},
+  {path: 'events', component: EventComponent, canActivate : [AuthGuard]},
+  {path: 'admin/events', component:AdminEvent, canActivate : [AuthGuard], data : { expectedRole : ['admin']}},
+  {path: 'events/create', component:EventCreate, canActivate : [AuthGuard], data : { expectedRoles : ['organizer','admin']}},
+  {path: 'events/event', component:SingleEvent, canActivate : [AuthGuard]},
+  {path: 'users/user/:id', component:SingleUserPage, canActivate : [AuthGuard]},
 ];
 
 @NgModule({

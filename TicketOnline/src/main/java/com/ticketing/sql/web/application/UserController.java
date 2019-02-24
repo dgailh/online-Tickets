@@ -1,7 +1,10 @@
 package com.ticketing.sql.web.application;
 
+import com.ticketing.sql.business.service.LoginService;
 import com.ticketing.sql.business.service.NotificationService;
 import com.ticketing.sql.business.service.UserService;
+import com.ticketing.sql.data.dto.LoginBody;
+import com.ticketing.sql.data.dto.ServerResponse;
 import com.ticketing.sql.data.dto.UsersDTO;
 import com.ticketing.sql.data.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +24,32 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
+@Autowired
+private LoginService loginService;
     @Autowired
     private NotificationService notificationService;
 
-    @GetMapping("/login")
-public Map login(Principal principal){
-    UsersDTO usersDTO = userService.findByEmail(principal.getName());
-        Map<String,Object> map = new HashMap<>();
-        map.put("userId",usersDTO.getId());
-        map.put("userRole",usersDTO.getRole());
-        map.put("first_name",usersDTO.getFirst_name());
-        return map;
+//    @GetMapping("/login")
+//public Map login(Principal principal){
+//    UsersDTO usersDTO = userService.findByEmail(principal.getName());
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("userId",usersDTO.getId());
+//        map.put("userRole",usersDTO.getRole());
+//        map.put("first_name",usersDTO.getFirst_name());
+//        return map;
+//    }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody LoginBody loginBody) {
+
+//        try{
+            return ResponseEntity.ok(loginService.loginWithUser(loginBody));
+//        }
+//        catch (Exception e){
+//            return ResponseEntity.ok(new ServerResponse(e.toString(),2));
+//        }
     }
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity getUser() {
         List<UsersDTO> users = this.userService.getUser();

@@ -94,4 +94,11 @@ public class UserService {
         else
             return new ServerResponse("no account with that email:"+email,2);
     }
+
+    public boolean existsByEmail(String email) {
+        return usersRepository.existsByEmail(email);
+    }
+    public boolean existsByEmailAndEnabledTrue(String email){
+        return usersRepository.existsByEmailAndEnabledTrue(email);
+    }
 }
