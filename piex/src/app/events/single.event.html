@@ -31,7 +31,7 @@
     </li>
   </ul>
   <div *ngIf="!isOld">
-  <label *ngIf="!event.deleted" > comment here: <br/>
+  <label *ngIf="loggedUser && !event.deleted" > comment here: <br/>
     <input  id="comment_input" type="text" [(ngModel)]="newComment"> <br/>
   <button  (click)="addComment(newComment)"
           onClick="document.getElementById('comment_input').value = ''"> comment</button>

@@ -18,10 +18,10 @@ const routes: Routes = [
   {path: 'user/:id', component: UserComponent, canActivate : [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'events', component: EventComponent, canActivate : [AuthGuard]},
+  {path: 'events', component: EventComponent},
   {path: 'admin/events', component:AdminEvent, canActivate : [AuthGuard], data : { expectedRole : ['admin']}},
   {path: 'events/create', component:EventCreate, canActivate : [AuthGuard], data : { expectedRoles : ['organizer','admin']}},
-  {path: 'events/event', component:SingleEvent, canActivate : [AuthGuard]},
+  {path: 'events/event', component:SingleEvent},
   {path: 'users/user/:id', component:SingleUserPage, canActivate : [AuthGuard]},
 ];
 
