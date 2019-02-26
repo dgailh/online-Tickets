@@ -13,8 +13,8 @@ the back-end is fully fonctionning also the SQL configuration. you just need to 
 for steps call me:
 0501568886;
 
-the front-end: is Still WIP about 60% finished.
+the front-end: weak UI.
 
-20-feb-2019: should finish the whole front-end. cool design is a plus.
+20-feb-2019: should finish the whole front-end. done
 
-27-feb-2019: should finish deploying the server on linux server and make it fully fonctioning. 
+27-feb-2019: should finish deploying the server on linux server and make it fully fonctioning. //delayed
