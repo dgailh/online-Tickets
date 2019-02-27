@@ -31,7 +31,7 @@ public class Users {
     //@UniqueElements
     @Email
     private String email;
-    @Size(min = 10, max = 10, message = "phone must be between 3 and 10 numbers")
+    @Size(min = 10, max = 10, message = "phone must be 10 numbers")
     @NumberFormat(pattern = "05########", style = NumberFormat.Style.DEFAULT)
     private String phone;
     @ColumnDefault("1")

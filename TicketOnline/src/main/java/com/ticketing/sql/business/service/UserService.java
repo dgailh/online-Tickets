@@ -50,9 +50,11 @@ public class UserService {
     }
 
     public boolean updateUser(UsersDTO object) {
+
         if (usersRepository.findById(object.getId()).isPresent()) {
             Users oldUserInfo = modelMapper.map(object, Users.class);
             oldUserInfo.setId(object.getId());
+            oldUserInfo.setEnabled(usersRepository.findById(object.getId()).get().isEnabled());
             oldUserInfo.setRoles(rolesRepository.findByName(object.getRole()));
             usersRepository.save(oldUserInfo);
             return true;

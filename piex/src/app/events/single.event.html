@@ -11,6 +11,7 @@
   {{event.name }} <br/>
   {{event.seats - event.taken}} left <br/>
   {{event.time}} - {{event.location}} <br/>
+  Organizer:
   {{event.organizer.first_name}} {{event.organizer.last_name}} - {{event.organizer.phone}} <br/>
   {{event.taken}}/{{event.seats}} seats taken <br/>
   <button *ngIf="!isOld && !event.deleted" (click)="bookATicket(event.id)"> Book</button>

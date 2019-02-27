@@ -94,7 +94,9 @@ export class UserComponent implements OnInit {
 
     this.userService.updateUser(user).subscribe(userData => {
       this.getUsers();
-      console.log("form submitted is "+ user+ "\n " + userData)}
+      console.log("form submitted is "+ user+ "\n " + userData)
+    location.reload();
+    }
     );
 
   }

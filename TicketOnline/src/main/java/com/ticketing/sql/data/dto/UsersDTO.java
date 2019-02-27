@@ -1,7 +1,5 @@
 package com.ticketing.sql.data.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -19,12 +17,12 @@ public class UsersDTO {
     @Size(min = 3, max = 10, message = "last name must be between 3 and 10 latters")
     @NotEmpty(message = "enter first name")
     private String last_name;
-    @Size(min = 6, max = 16, message = "password must be between 6 and 16 latters")
+    @Size(min = 6, message = "password must be more than 6 latters")
     @NotEmpty(message = "enter a password")
     private String password;
     @Email
     private String email;
-    @Size(min = 10, max = 10, message = "phone must be between 3 and 10 numbers")
+    @Size(min = 10, max = 10, message = "phone must be 10 numbers")
     private String phone;
     //@NotEmpty(message = "need role ID")
     private String role;

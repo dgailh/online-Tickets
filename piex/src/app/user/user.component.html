@@ -4,17 +4,17 @@
   <ul *ngFor="let user of users$ ">
     <li>
       <a routerLink="user/{{user.id }}" class="btn btn-primary">{{user.first_name}}  {{user.last_name}}</a>
+      <div *ngIf="isAdmin">
       <button class="btn btn-warning btn-sm"
               *ngIf="isAdmin || loggedUser.userId==user.id" (click)=updateUser(user)>update </button>
-      <button class="btn btn-warning btn-sm"
+      <button class="btn btn-danger btn-sm"
               *ngIf="isAdmin || loggedUser.userId==user.id" (click)=deleteUser(user.id)>delete </button>
+      </div>
       <br/>
       <button *ngIf="isAdmin || loggedUser.userId==user.id" (click)="getUserTickets(user.id)">show tickets</button>
     </li>
   </ul>
 
-  <span *ngIf="isEditing">Hide</span>
-  <span *ngIf="!isEditing">Edit</span>
 </div>
 
 <div *ngIf="showTickets">
@@ -65,16 +65,15 @@
   </label>
 
   <label>role id
-    <input type="number" [(ngModel)]="currentUser.role"
-           name="role number" class="form-control-lg">
+    <select [(ngModel)]="currentUser.role" class="form-control-lg">
+      {{currentUser.role}}
+      <option value=user>User</option>
+      <option value=organizer>Organizer</option>
+    </select>
   </label>
 
   <button type="submit" class="btn btn-primary"
           (click)="onSubmit(currentUser)">Submit</button>
 
-  <h3>Results</h3>
-  <div class="result">
-    {{ currentUser | json}}
-  </div>
 <!--end here ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 </div>

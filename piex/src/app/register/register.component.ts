@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from "../user/UserService";
 import {AlertService} from "../service/alert.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import {AlertService} from "../service/alert.service";
 export class RegisterComponent implements OnInit {
   myReactiveForm: FormGroup;
   constructor(private flashMSG:AlertService,
-    private formBuilder: FormBuilder, private userService: UserService) { }
+    private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.myReactiveForm = this.formBuilder.group({
@@ -34,11 +35,15 @@ export class RegisterComponent implements OnInit {
     //checking email before commiting
     this.userService.checkEmail(this.myReactiveForm.get('email').value).subscribe(data => {
       if (data.responseIndicator == 2) {
-        this.userService.addUser(this.myReactiveForm.value).subscribe();
+        this.userService.addUser(this.myReactiveForm.value).subscribe(secondData =>
+        {
+          this.router.navigate(['/login'])
+        });
         console.log('Form submitted: ', this.myReactiveForm.value);
 
       } else
-        this.flashMSG.flashMSG(data.text, data.responseIndicator);;
+        this.flashMSG.flashMSG(data.text, data.responseIndicator);
+
     },
       error1 => console.log(error1),
       ()=> console.log('checking email'));
